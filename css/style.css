@@ -360,5 +360,21 @@ It is often used to add cosmetic content to an element with the content property
     animation-fill-mode: backwards;
 }
 
-
+.button {
+    font-size: 20px;
+    color: white;
+    background-color: blue;
+  }
+  
+  a {
+    background-color: purple;
+  }
+  
+  #nav div.pull-right a.button {
+    background-color: orange;
+  }
+  
+  #nav a.button:hover {
+    background-color: yellow;
+  }
 
