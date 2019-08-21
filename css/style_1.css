@@ -1,0 +1,382 @@
+/*
+COLORS:
+
+Light green: #7ed56f
+Medium green: #55c57a
+Dark green: #28b485
+
+*/
+/* *: common css element for any web page */
+
+/* 
+    It can make all stuffls in the defined area
+    And, it generates same size including padding and border.
+
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+/* if Lato is not available, use sans-serif */
+body {
+    font-family: "Lato", "sans-serif";
+    /* 400	Bolder than 300, lighter than 500. Equivalent of normal. */
+    font-weight: 400;
+    font-size: 16px;
+    /* Line height bigger 1.7 times than the pre-defined line height */
+    line-height: 1.7;
+    color: #777777;
+    /* 
+        Even though the image stays on top of the brower above,
+        we can still use padding!
+    
+    */
+    padding: 30px;
+}
+
+.header {
+    /* 95% of top of the entire screen */
+    height: 95vh;
+    
+    /* importing image from this file*/
+    /* linear-gradient from light green to dark green, starting from left to right*/
+    /* Opacity can be used by hovering the color icons below. Not it is set 73% and 73% */
+    background-image: linear-gradient(
+        to right bottom,
+        #7ed56f73, 
+        #28b48573), 
+        url(../img/hero.jpg);
+    /* cover	Resize the background image to cover the entire container, even if it has to stretch the image or cut a little bit off one of the edges */
+    /* others: contain percentage, auto etc... */
+    background-size: cover;
+    /* background image always stays top in the container or box */
+    /* ohters: center, bottom */
+    background-position: top;
+
+    /* 
+        clip-path : use polygon
+        The first para: left top position: if we put each number, it will move to right and bottom sides
+
+
+    */
+    /* clip-path: polygon(x y, x y, x y); */
+    clip-path: polygon(0 0, 100% 0, 100% 70vh, 0 100%);
+    /* Diamond */
+    /* clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); */
+    /* additional reference: https://bennettfeely.com/clippy/ */
+
+    /* because we need to use position: absolute in children */
+    position: relative;
+}
+
+.logo-box {
+    position: absolute;
+    left: 40px;
+    top: 40px;
+}
+
+.text-box {
+    /* compared toheader */
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    /* 
+        until the transform,
+        the center is left top corner of text-box
+     */
+    /* change left top to center of text-box */
+    transform: translate(-50%, -50%);
+    text-align: center;
+    
+}
+
+.logo {
+    /* 
+        once we specify the height
+        we do not need to specify width
+     */
+    height: 35px;
+
+}
+
+/* must use logo-box in hover to optimaize */
+/* .logo-box:hover .logo {
+    animation: moveInRight 2s ease-out;
+} */
+
+.heading-primary {
+    color: #ffffff;
+    text-transform: uppercase;
+
+    /* In order to prevent the animation letter moves up and down little bit */
+
+    backface-visibility: hidden;
+    margin-bottom: 60px;
+    
+}
+
+.heading-primary-main {
+    /* 
+        [block elements] 
+        1. occupys the given space
+        2. break the line
+     */
+    display: block;
+    font-size: 60px;
+    font-weight: 400;
+    /* right size */
+    letter-spacing: 35px;
+
+    /* specify anymation name */
+    animation-name: moveInLeft;
+    /* specify animation duration */
+    animation-duration: 2s;
+    /* it starts two seconds later */
+    /* animation-delay: 2s; */
+    /* it iterates the animation effect 3 times */
+    /* animation-iteration-count: 3; */
+    /* it moves slower at the beggining but faster at the end  */
+    animation-timing-function: ease-out;
+
+   
+}
+
+.heading-primary-sub {
+    display: block;
+    font-size: 20px;
+    /* from 400, 700 rom Lato */
+    font-weight: 700;
+    /* control by using browser's tool  */
+    letter-spacing: 17.4px;
+
+    /* we can use a single line definition */
+    animation: moveInRight 2s ease-in-out;
+   /*  animation-duration: 2s;
+    animation-timing-function: ease-out; */
+}
+
+@keyframes moveInLeft {
+    0% {
+        /* 
+            transparent is 0 when it is located at the -100 left side 
+            Then it will move to the right side
+        */
+        opacity: 0;
+        transform: translateX(-100px);
+
+        /* transform: translateX(-100px) rotate(0deg); */
+
+    }
+    /* %60% {
+        transform: rotate(180deg)
+    } */
+    80% {
+        /*
+             It moves the letter to the right side further
+             and then get it back to the original spot
+         */
+        transform: translateX(20px);
+
+    }
+    100% {
+        /* 
+            transparent is 1 when it is located at the curruent original location 
+            Then it will not move anymore
+        */
+        opacity: 1;
+
+        transform: translateX(0);
+
+        /* including rotation */
+        /* transform: translateX(0) rotate(180deg); */
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        /* 
+            transparent is 0 when it is located at the -100 left side 
+            Then it will move to the right side
+        */
+        opacity: 0;
+        transform: translateX(100px);
+
+    }
+    80% {
+        /*
+             It moves the letter to the right side further
+             and then get it back to the original spot
+         */
+        transform: translateX(-20px);
+
+    }
+    100% {
+        /* 
+            transparent is 1 when it is located at the curruent original location 
+            Then it will not move anymore
+        */
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes moveInButtom {
+    0% {
+        /* 
+            transparent is 0 when it is located at the -100 left side 
+            Then it will move to the right side
+        */
+        opacity: 0;
+        transform: translateY(100px);
+
+    }
+
+    100% {
+        /* 
+            transparent is 1 when it is located at the curruent original location 
+            Then it will not move anymore
+        */
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 
+    [ It defines two states ]
+    link: 
+    . current state of the anchor 
+    . it is used only in anchor
+    visited:
+    . after the user clicks (purple color link line for instance
+
+*/
+
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+
+    /* It defines the lines like overline, line-through, underline, and combinations of the lines */
+    text-decoration: none;
+    padding: 15px 40px;
+
+    /* 
+        [ IMPORTANT !!!!]
+        Compared to display: inline, the major difference is that display: inline-block allows to set a width and height on the element.
+        Also, with display: inline-block, the top and bottom margins/paddings are respected, but with display: inline they are not.
+        Compared to display: block, the major difference is that display: inline-block does not add a line-break after the element, so the element can sit next to other elements.
+        
+    */
+
+    /* To be located at center, it is treated as "text" in the parent element, ".text-box { text-align: center }" */
+    display: inline-block;
+    border-radius: 100px;
+    /* 
+        CSS transitions allows you to change property values smoothly, over a given duration.
+        all property defined below, btn:hover and btn:active
+
+    */
+    transition: all .2s;
+    position: relative;
+}
+
+/* when mouse is on the button .2 => 20% */
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(0,0,0,.2);
+}
+
+/* after clicked  */
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+/* [ It defines a permanet state ]*/
+.btn-white {
+    background-color: #ffffff;
+    color: #777777;
+}
+
+/* 
+In CSS, ::after creates a pseudo-element that is the last child of the selected element. 
+It is often used to add cosmetic content to an element with the content property. It is inline by default.
+*/
+/* 
+    it clone the btn class in the background 
+    to make the backgroud scaled up button
+*/
+.btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* in the backgroung */
+    z-index: -1;
+    /* animation effect */
+    transition: all .4s;
+}
+
+/* delete the font-color here */
+.btn-white::after {
+    background-color: #ffffff;
+
+    /* In this case, for some reason, 
+        the original button getting red 
+        Just bear in mind that the original button still stays on top.
+    */
+    /* background-color: red; */
+}
+
+/* in the background, it scales up */
+.btn:hover::after {
+    /* scale : increase the elements 
+       in this case, "2" is doulbe the initial size
+    */
+    /* 
+    
+        scale sizes of X and Y
+    */
+    transform: scaleX(1.6) scaleY(1.4);
+    /* transform: scale(1.5); */
+    /* atthe last minutes, it is fully transparent */
+    opacity: 0;
+}
+
+.btn-animated {
+    /* .75 for delay */
+    animation: moveInButtom 1.5s ease-out .75s;
+    /* animation-delay: 1s;  */
+
+    /*  
+        animation-fill-mode: forward Let the div element retain the style values from the last keyframe when the animation ends:
+        animation-fill-mode: backward Let the div element retain the style values from the first keyframe when the animation starts:
+    */
+    animation-fill-mode: backwards;
+}
+
+.button {
+    font-size: 20px;
+    color: white;
+    background-color: blue;
+  }
+  
+  a {
+    background-color: purple;
+  }
+  
+  #nav div.pull-right a.button {
+    background-color: orange;
+  }
+  
+  #nav a.button:hover {
+    background-color: yellow;
+  }
+
