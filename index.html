@@ -13,27 +13,37 @@
         <title>Natours | Exciting tours for adventurous people</title>
     </head>
     <body>
-            <nav id="nav">
-                    <div class="pull-right">
-                      <a class="button button-danger" href="link-html">Do nok click</a>
-                    </div>
-                  </nav>
+        <!-- Block -->
         <header class="header">
-            <div class="logo-box">
-                <img src="img/logo-white.png" alt="Logo" class="logo">
+            <!-- 
+                Element 
+                because format is only exists in thid block
+             -->
+            <div class="header__logo-box">
+                <img src="img/logo-white.png" alt="Logo" class="header__logo">
             </div>
-            <div class="text-box">
-                <!-- block -->
+
+            <!-- 
+                Element 
+                because format is only exists in thid block
+             -->
+            <div class="header__text-box">
+                <!-- 
+                    [block] 
+                    because it can be used in the entire pages
+                -->
                 <h1 class="heading-primary">
                     <!-- linline conponentsfor h1 -->
-                    <span class="heading-primary-main">Outdoors</span>
-                    <span class="heading-primary-sub">is where life happens</span>
+                    <!-- 
+                        [it is modifer]
+                        because it a slightly different versio of blcok above
+                     -->
+                    <span class="heading-primary--main">Outdoors</span>
+                    <span class="heading-primary--sub">is where life happens</span>
                 </h1>
                 <!-- Block Elements -->
-                <a href="#" class="btn btn-white btn-animated">Discover our tours</a>
+                <a href="#" class="btn btn--white btn--animated">Discover our tours</a>
             </div>
         </header>
-
-
     </body>
 </html>
