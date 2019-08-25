@@ -1,0 +1,215 @@
+
+
+/* 
+    must find out ::after and ::before here with * mark 
+    also, need to figure out "inherit"
+*/
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    /* 
+        Boxsizing itself does not have the inheritance attribute.
+        We must force it to be inherited once any parant defines "box-sizing"
+     */
+    box-sizing: inherit;
+}
+
+html {
+
+    /* 
+        It is not also good idea
+            because the user can change browser's font size.
+        user's important setting is higher priority.
+        Therefore, we should make it variable in terms of the user's browser setup
+     */
+    /* font-size: 10px */
+
+    /* 
+        10px / 16px = 62.5% 
+        In result, when user changes 16px to 32px or more, 
+            the html font size maintains 62.5%
+    */
+    font-size: 62.5%;
+}
+
+body {
+    font-family: "Lato", "sans-serif";
+    font-weight: 400;
+    /* font-size: 16px; */
+    line-height: 1.7;
+    color: #777777;
+    /* em of length : reference to parent's font size  */
+    /* rem of length : reference to root(html)'s font size  */
+    padding: 3rem;
+    /* padding: 30px; */
+
+    /* 
+        the body defines "box-sizing overhere, therefore, 
+        the children will have box-sizing property with the same declaration value 
+    */
+    box-sizing: border-box;
+}
+
+.header {
+    height: 95vh;    
+    background-image: linear-gradient(
+        to right bottom,
+        #7ed56f73, 
+        #28b48573), 
+        url(../img/hero.jpg);
+    background-size: cover;
+    background-position: top;
+    clip-path: polygon(0 0, 100% 0, 100% 70vh, 0 100%);
+    position: relative;
+}
+
+.header__logo-box {
+    position: absolute;
+    left: 4rem;
+    top: 4rem;
+    /* left: 40px;
+    top: 40px; */
+}
+
+.header__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    
+}
+
+.header__logo {
+    height: 3.5rem;
+    /* height: 35px; */
+}
+
+.heading-primary {
+    color: #ffffff;
+    text-transform: uppercase;
+    backface-visibility: hidden;
+    margin-bottom: 6rem;
+    /* margin-bottom: 60px; */
+    
+}
+
+.heading-primary--main {
+    display: block;
+    font-size: 6rem;
+    /* font-size: 60px; */
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    /* letter-spacing: 35px; */
+    animation-name: moveInLeft;
+    animation-duration: 2s;
+    animation-timing-function: ease-out;   
+}
+
+.heading-primary--sub {
+    display: block;
+    font-size: 2rem;
+    /* font-size: 20px; */
+    font-weight: 700;
+    letter-spacing: 17.4px; /* It is too specific. Just keep it as it is */
+    animation: moveInRight 2s ease-in-out;
+}
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-10rem);
+        /* transform: translateX(-100px); */
+    }
+    80% {
+        transform: translateX(2rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(10rem);
+    }
+    80% {
+        transform: translateX(-2rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes moveInButtom {
+    0% {
+        opacity: 0;
+        transform: translateY(10rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    /* padding: 15px 40px; */
+    padding: 1.5rem 4.0rem;
+    display: inline-block;
+    /* border-radius: 100px; */
+    border-radius: 10rem;
+    transition: all .2s;
+    position: relative;
+    font-size: 1.6rem;
+}
+
+.btn:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 .5rem 2rem rgba(0,0,0,.2);
+}
+
+.btn:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.2);
+}
+
+.btn--white {
+    background-color: #ffffff;
+    color: #777777;
+}
+
+.btn::after {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+}
+
+.btn-white::after {
+    background-color: #ffffff;
+}
+
+.btn:hover::after {
+    transform: scaleX(1.6) scaleY(1.4);
+    opacity: 0;
+}
+
+.btn--animated {
+    animation: moveInButtom 1.5s ease-out .75s;
+    animation-fill-mode: backwards;
+}
